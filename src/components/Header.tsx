@@ -1,16 +1,10 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import "./header.scss";
 
-import "./Header.scss";
+import React, { Component } from "react";
 
 class Header extends Component {
-  public dom: any;
   constructor(props: any) {
     super(props);
-    this.dom = {};
-  }
-  componentDidMount() {
-    this.dom.root = ReactDOM.findDOMNode(this);
   }
   render() {
     return (

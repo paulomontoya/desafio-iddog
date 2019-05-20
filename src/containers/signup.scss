@@ -9,7 +9,7 @@
     transform: translate3d(5px, 0, 0);
   }
 }
-.signup-section {
+.signup-page {
   max-width: 320px;
   min-height: 170px;
   height: 100vh;
@@ -19,12 +19,18 @@
   flex-direction: column;
   justify-content: center;
 
+  .signup-error {
+    color: #aa2021;
+    margin-bottom: 10px;
+  }
+
   form {
     input {
       padding: 6px;
       width: 100%;
       outline: 0;
       box-sizing: border-box;
+      text-align: center;
 
       &.error {
         border: 1px solid #aa2121;

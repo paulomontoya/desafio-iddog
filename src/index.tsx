@@ -1,12 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 import "./index.scss";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import { store, persistor } from "./store";
+import { history } from "./history-creator";
+import { PersistGate } from "redux-persist/integration/react";
+import { Route, Switch } from "react-router-dom";
+import LoadingSpinner from "./components/loading-spinner";
+import SignupPage from "./containers/signup";
+import NotFoundPage from "./containers/not-found";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+render(
+  <Provider store={store}>
+    <PersistGate loading={<LoadingSpinner />} persistor={persistor}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route path="/" exact component={SignupPage} />
+          <Route path="*" component={NotFoundPage} />
+        </Switch>
+      </ConnectedRouter>
+    </PersistGate>
+  </Provider>,
+  document.querySelector("#root")
+);
