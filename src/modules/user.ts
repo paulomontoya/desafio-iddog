@@ -6,7 +6,9 @@ export const SIGNUP_SUCCESS = "user/SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "user/SIGNUP_FAIL";
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
+  email: "",
+  token: ""
 };
 
 export default (state = initialState, action: any) => {
