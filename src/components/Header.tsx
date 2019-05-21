@@ -6,7 +6,7 @@ class Header extends Component {
   constructor(props: any) {
     super(props);
   }
-  render() {
+  public render() {
     return (
       <header className="header">
         <h1>

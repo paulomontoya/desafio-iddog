@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "radix": false,
+    "object-literal-sort-keys": false,
+    "no-submodule-imports": false,
+    "jsx-no-lambda": false
+  },
+  "rulesDirectory": []
+}

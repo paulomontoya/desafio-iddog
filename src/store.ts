@@ -1,17 +1,17 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import { routerMiddleware, connectRouter } from "connected-react-router";
-import thunk from "redux-thunk";
-import rootReducer from "./modules";
-import { history } from "./history-creator";
-import { persistStore, persistReducer } from "redux-persist";
+import { routerMiddleware } from "connected-react-router";
+import { applyMiddleware, compose, createStore } from "redux";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import thunk from "redux-thunk";
+import { history } from "./history-creator";
+import rootReducer from "./modules";
 
 const initialState = {};
 const enhancers = [];
 const middleware = [thunk, routerMiddleware(history)];
 
 if (process.env.NODE_ENV === "development") {
-  let windowEl: any = window;
+  const windowEl: any = window;
   const devToolsExtension = windowEl.__REDUX_DEVTOOLS_EXTENSION__;
 
   if (typeof devToolsExtension === "function") {

@@ -1,14 +1,14 @@
-import "./feed.scss";
 import React, { Component, ReactElement } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Header from "../components/header";
-import { listDogs, selectDog, unselectDog } from "../modules/dogs";
 import { Link, Redirect } from "react-router-dom";
-import { history } from "../history-creator";
-import LoadingSpinner from "../components/loading-spinner";
-import DogList from "../components/dog-list";
+import { bindActionCreators } from "redux";
 import DogBox from "../components/dog-box";
+import DogList from "../components/dog-list";
+import Header from "../components/header";
+import LoadingSpinner from "../components/loading-spinner";
+import { history } from "../history-creator";
+import { listDogs, selectDog, unselectDog } from "../modules/dogs";
+import "./feed.scss";
 
 export interface IProps {
   user: {
@@ -42,41 +42,7 @@ class FeedPage extends Component<IProps> {
     this.currentDogIndex = "";
   }
 
-  private updateDogListByURL = () => {
-    let params = new URLSearchParams(location.search);
-
-    if (this.currentCategory === params.get("category")) {
-      return false;
-    }
-
-    this.currentCategory = params.get("category");
-
-    if (this.currentCategory) {
-      if (this.listOfCategories.indexOf(this.currentCategory) < 0) {
-        history.push(`/404`);
-      } else {
-        this.props.listDogs(this.currentCategory);
-      }
-    } else {
-      history.push(`/feed?category=${this.listOfCategories[0]}`);
-    }
-  };
-
-  private updateSelectedDogByURL = () => {
-    let params = new URLSearchParams(location.search);
-    this.currentDogIndex = params.get("id");
-
-    if (this.currentCategory && this.currentDogIndex) {
-      this.props.selectDog(
-        this.currentCategory,
-        parseInt(this.currentDogIndex)
-      );
-    } else {
-      this.props.unselectDog();
-    }
-  };
-
-  componentDidMount() {
+  public componentDidMount() {
     this.updateDogListByURL();
     this.updateSelectedDogByURL();
 
@@ -86,7 +52,7 @@ class FeedPage extends Component<IProps> {
     });
   }
 
-  render() {
+  public render() {
     return this.props.user.token === "" ? (
       <Redirect to="/" />
     ) : (
@@ -131,6 +97,41 @@ class FeedPage extends Component<IProps> {
       </section>
     );
   }
+
+  private updateDogListByURL = () => {
+    const params = new URLSearchParams(location.search);
+
+    if (this.currentCategory === params.get("category")) {
+      return false;
+    }
+
+    this.currentCategory = params.get("category");
+
+    if (this.currentCategory) {
+      if (this.listOfCategories.indexOf(this.currentCategory) < 0) {
+        history.push(`/404`);
+      } else {
+        this.props.listDogs(this.currentCategory);
+      }
+    } else {
+      history.push(`/feed?category=${this.listOfCategories[0]}`);
+      this.updateDogListByURL();
+    }
+  };
+
+  private updateSelectedDogByURL = () => {
+    const params = new URLSearchParams(location.search);
+    this.currentDogIndex = params.get("id");
+
+    if (this.currentCategory && this.currentDogIndex) {
+      this.props.selectDog(
+        this.currentCategory,
+        parseInt(this.currentDogIndex)
+      );
+    } else {
+      this.props.unselectDog();
+    }
+  };
 }
 
 const mapStateToProps = ({ user, dogs }: any) => ({

@@ -1,14 +1,14 @@
-import "./not-found.scss";
 import React, { Component } from "react";
-import Header from "../components/header";
 import { Link } from "react-router-dom";
+import Header from "../components/header";
+import "./not-found.scss";
 
 class NotFoundPage extends Component {
   constructor(props: any) {
     super(props);
   }
 
-  render() {
+  public render() {
     return (
       <section className="not-found-page">
         <Header />

@@ -1,13 +1,13 @@
-import "./signup.scss";
-import React, { Component, CSSProperties } from "react";
-import { Spring, animated } from "react-spring/renderprops";
 import { Formik } from "formik";
-import * as Yup from "yup";
-import { bindActionCreators } from "redux";
+import React, { Component, CSSProperties } from "react";
 import { connect } from "react-redux";
-import { signup } from "../modules/user";
+import { animated, Spring } from "react-spring/renderprops";
+import { bindActionCreators } from "redux";
+import * as Yup from "yup";
 import Header from "../components/header";
 import LoadingSpinner from "../components/loading-spinner";
+import { signup } from "../modules/user";
+import "./signup.scss";
 
 export interface IProps {
   user: {
@@ -23,7 +23,7 @@ class SignupPage extends Component<IProps> {
     super(props);
   }
 
-  render() {
+  public render() {
     return (
       <section className="signup-page">
         <Header />
@@ -63,7 +63,7 @@ class SignupPage extends Component<IProps> {
               return (
                 <form onSubmit={handleSubmit}>
                   <Spring
-                    native
+                    native={true}
                     from={{ height: 0, opacity: 0 }}
                     to={{
                       height: 40,
@@ -80,7 +80,7 @@ class SignupPage extends Component<IProps> {
                         onBlur={handleBlur}
                         style={SpringProps}
                         placeholder="your email"
-                        autoFocus
+                        autoFocus={true}
                         className={errors.email && touched.email && "error"}
                       />
                     )}

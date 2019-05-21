@@ -73,6 +73,10 @@
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
     "ts-loader": "^5.3.2",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.1.6",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
@@ -85,7 +89,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,11 +1,11 @@
-import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
+import { combineReducers } from "redux";
 import { history } from "../history-creator";
-import user from "./user";
 import dogs from "./dogs";
+import user from "./user";
 
 export default combineReducers({
   router: connectRouter(history),
-  user,
-  dogs
+  dogs,
+  user
 });
