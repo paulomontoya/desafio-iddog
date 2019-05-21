@@ -10,6 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from "./components/loading-spinner";
 import SignupPage from "./containers/signup";
+import FeedPage from "./containers/feed";
 import NotFoundPage from "./containers/not-found";
 
 render(
@@ -18,6 +19,7 @@ render(
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact component={SignupPage} />
+          <Route path="/feed" component={FeedPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </ConnectedRouter>

@@ -1,0 +1,57 @@
+@keyframes shake {
+}
+.feed-page {
+  display: block;
+  padding: 15px;
+  text-align: center;
+
+  .header {
+    margin-top: 40px;
+    text-transform: uppercase;
+  }
+
+  .feed-categories {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: 24px auto;
+
+    > a {
+      display: block;
+      position: relative;
+      text-transform: uppercase;
+      color: #717171;
+      text-decoration: none;
+      outline: 0;
+      transition: 0.2s color;
+
+      &.active {
+        font-weight: 700;
+        pointer-events: none;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 1px;
+        border-top: 1px solid #000;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.2s width;
+      }
+      &.active::after,
+      &:focus::after,
+      &:hover::after {
+        width: 60%;
+      }
+      &.active,
+      &:focus,
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
