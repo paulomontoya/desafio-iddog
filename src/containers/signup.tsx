@@ -18,7 +18,7 @@ export interface IProps {
   signup: Function;
 }
 
-class SignupPage extends Component<IProps> {
+export class SignupPage extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
   }

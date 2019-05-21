@@ -5,13 +5,13 @@ export const SIGNUP_REQUESTED = "user/SIGNUP_REQUESTED";
 export const SIGNUP_SUCCESS = "user/SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "user/SIGNUP_FAIL";
 
-const initialState = {
+export const userInitialState = {
   isLoading: false,
   email: "",
   token: ""
 };
 
-export default (state = initialState, action: any) => {
+export default (state = userInitialState, action: any) => {
   switch (action.type) {
     case SIGNUP_REQUESTED:
       return {
