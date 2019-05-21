@@ -1,0 +1,42 @@
+.dog-box {
+  display: block;
+  visibility: hidden;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: 40;
+  transition: 0.2s opacity;
+  cursor: pointer;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  &::before {
+    content: "";
+    background: rgba(0, 0, 0, 0.85);
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  figure {
+    display: block;
+    margin: 0;
+    position: fixed;
+    width: 90vw;
+    height: 90vh;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 41;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

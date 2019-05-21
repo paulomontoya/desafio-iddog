@@ -4,10 +4,13 @@ import { store } from "../store";
 export const LIST_REQUESTED = "dogs/LIST_REQUESTED";
 export const LIST_SUCCESS = "dogs/LIST_SUCCESS";
 export const LIST_FAIL = "dogs/LIST_FAIL";
+export const SELECT_DOG = "dogs/SELECT_DOG";
+export const UNSELECT_DOG = "dogs/UNSELECT_DOG";
 
 const initialState = {
   isLoading: false,
-  dogs: []
+  dogs: [],
+  selectedDog: undefined
 };
 
 export default (state = initialState, action: any) => {
@@ -31,6 +34,18 @@ export default (state = initialState, action: any) => {
         ...state,
         error: action.error.message,
         isLoading: false
+      };
+
+    case SELECT_DOG:
+      return {
+        ...state,
+        selectedDog: action.selectedDog
+      };
+
+    case UNSELECT_DOG:
+      return {
+        ...state,
+        selectedDog: undefined
       };
     default:
       return state;
@@ -65,5 +80,25 @@ export const listDogs = (category: string) => {
           error: response
         });
       });
+  };
+};
+
+export const selectDog = (category: string, index: number) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: SELECT_DOG,
+      selectedDog: {
+        category,
+        index
+      }
+    });
+  };
+};
+
+export const unselectDog = () => {
+  return (dispatch: any) => {
+    dispatch({
+      type: UNSELECT_DOG
+    });
   };
 };
