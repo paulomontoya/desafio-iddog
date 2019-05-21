@@ -32,7 +32,9 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         error: action.error.message,
-        isLoading: false
+        isLoading: false,
+        email: "",
+        token: ""
       };
     default:
       return state;
@@ -51,12 +53,12 @@ export const signup = (email: string) => {
         email
       })
       .then(response => {
-        dispatch(push("/feed"));
         dispatch({
           type: SIGNUP_SUCCESS,
           email: response.data.user.email,
           token: response.data.user.token
         });
+        dispatch(push("/feed"));
       })
       .catch((response: AxiosResponse) => {
         dispatch({
